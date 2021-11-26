@@ -3,6 +3,8 @@ const express = require("express")
 const server = express()
 const routes = require('./routes')
 
+//usando template engine
+server.set('view engine', 'ejs')
 // Habilitar arquivos statics
 server.use(express.static("public"))
 
