@@ -12,18 +12,38 @@ const profile = {
     "vacation-per-day": 4
 }
 
-const jobs = []
+const jobs = [
+    {
+        id: 1,
+        name: "Pizzaria Guloso",
+        "daily-hours": 2,
+        "total-hours": 44,
+        created_at: Date.now()
+    },
+    {
+        id: 2,
+        name: "Onetwo Project",
+        "daily-hours": 4,
+        "total-hours": 35,
+        created_at: Date.now()
+    },
+]
 
 //req, res
-routes.get('/', (req, res) =>   res.render(views + "index"))
+routes.get('/', (req, res) =>   res.render(views + "index", { jobs }))
 routes.get('/job', (req, res) =>   res.render(views + "job"))
 routes.post('/job', (req, res) => {
     // req.body{ name: 'asdf', 'daily-hours': '3', 'total-hours': '12' }
 
-    const job = req.body
-    job.createdAt =  Date.now() //atribuindo uma nova data
+    const lastId = jobs[jobs.length - 1]?.id || 1;
 
-    jobs.push(job)
+    jobs.push({// estou mandando isto para o const jobs = []
+        id: lastId + 1,
+        name: req.body.name,
+        "daily-hours": req.body["daily-hours"],
+        "total-hours": req.body["total-hours"],
+        created_at: Date.now() // atribuindo data de hoje
+    })
     return res.redirect("/")
 })
 routes.get('/job/edit', (req, res) =>   res.render(views + "job-edit"))
