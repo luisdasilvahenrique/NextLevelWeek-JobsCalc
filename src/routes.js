@@ -18,19 +18,42 @@ const jobs = [
         name: "Pizzaria Guloso",
         "daily-hours": 2,
         "total-hours": 44,
-        created_at: Date.now()
+        created_at: Date.now(),
     },
     {
         id: 2,
         name: "Onetwo Project",
         "daily-hours": 4,
         "total-hours": 35,
-        created_at: Date.now()
+        created_at: Date.now(),
     },
 ]
 
 //req, res
-routes.get('/', (req, res) =>   res.render(views + "index", { jobs }))
+routes.get('/', (req, res) => {
+
+
+    const updateJobs = jobs.map((job) => {
+    // ajustes no job
+    // calculo de tempo restante
+    const remaningDays = (job['total-hours'] / job['daily-hours']).toFixed()
+
+    const createdDate = new Date(job.created_at)
+    const dueDay = createdDate.getDate() + Number(remaningDays)
+    // const dueDate = createdDate.setDate
+
+    return job
+    })
+
+
+    
+
+
+
+
+   return res.render(views + "index", { jobs })
+
+})
 routes.get('/job', (req, res) =>   res.render(views + "job"))
 routes.post('/job', (req, res) => {
     // req.body{ name: 'asdf', 'daily-hours': '3', 'total-hours': '12' }
