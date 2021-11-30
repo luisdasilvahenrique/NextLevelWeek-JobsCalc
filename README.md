@@ -21,6 +21,9 @@
   <img alt="dev.finances" src=".github/jobscalc.png" width="100%">
 </p>
 
+## Start 
+- npm run dev
+
 ## 🚀 Tecnologias
 
 Esse projeto foi desenvolvido com as seguintes tecnologias:
