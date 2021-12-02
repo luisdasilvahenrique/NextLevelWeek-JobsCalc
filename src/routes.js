@@ -27,6 +27,13 @@ const jobs = [
         "total-hours": 35,
         created_at: Date.now(),
     },
+    {
+        id: 3,
+        name: "Onethree Project",
+        "daily-hours": 6,
+        "total-hours": 40,
+        created_at: Date.now(),
+    },
 ]
 
 //req, res
