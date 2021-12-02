@@ -27,7 +27,7 @@
   <body id="page-index">
 
     <% include('parts/page-header', { title: 'Meu Perfil'}) %>
-
+  
     <header class="page-header">
       <div class="container">
         <section id="top" class="animate-up">
@@ -81,22 +81,22 @@
         <div class="cards">
 
           <% jobs.forEach(Itemjob => {%>
-            
-            <div class="card progress" data-id="<%= Itemjob.id %> ">
+            <!-- Problema para executar as linhas adicionadas -->
+            <div class="card <%= jobs.status %> " data-id="<%= Itemjob.id %> ">
               <div class="id column"><%= Itemjob.id %> </div>
               <div class="name column">
                 <%= Itemjob.name %> 
               </div>
               <div class="deadline column">
                 <span>Prazo</span>
-                <p>3 dias para a entrega</p>
+                <p><%= jobs.remaining %> dias para a entrega</p>
               </div>
               <div class="amount column">
                 <span>Valor</span>
-                <p>R$ 4500,00</p>
+                <p> R$ <%= jobs.budget.toFixed(2).replace('.' ',') %> </p>
               </div>
               <div class="status badge column">
-                Em andamento
+                <%= jobs.status === 'done' ? 'Encerrado' : 'Em andamento' %> 
               </div>
               <div class="actions column flex">
                 <p class="sr-only">Ações</p>
