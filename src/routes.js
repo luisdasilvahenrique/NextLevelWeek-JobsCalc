@@ -18,7 +18,7 @@ const jobs = [
     id: 1,
     name: "Pizzaria Guloso",
     "daily-hours": 2,
-    "total-hours": 44,
+    "total-hours": 60,
     created_at: Date.now(),
   },
   {
@@ -26,13 +26,6 @@ const jobs = [
     name: "Onetwo Project",
     "daily-hours": 4,
     "total-hours": 35,
-    created_at: Date.now(),
-  },
-  {
-    id: 3,
-    name: "Onethree Project",
-    "daily-hours": 6,
-    "total-hours": 40,
     created_at: Date.now(),
   },
 ];
@@ -57,6 +50,8 @@ function remainingDays(job) {
 
 //req, res
 routes.get("/", (req, res) => {
+
+
   const updateJobs = jobs.map((job) => {
     //ajustes no job
     const remaining = remainingDays(job);
