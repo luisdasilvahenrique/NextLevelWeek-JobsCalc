@@ -103,7 +103,7 @@
               <div class="amount column">
                 <span>Valor</span>
                 <!-- adicionar valores com virgulas nos (valor) -->
-                <p> R$  <%= job.budget%>  </p>
+                <p> R$  <%= job.budget.toFixed(2).replace('.', ',')%>  </p>
               </div>
               <div class="status badge column">
                 <%= job.status === 'done' ? 'Encerrado' : 'Em andamento' %> 
