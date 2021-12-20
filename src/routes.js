@@ -3,7 +3,7 @@ const routes = express.Router();
 
 const views = __dirname + "/views/";
 
-const profile = {
+const Profile = {
   data: {
     name: "Luis Henrique",
     avatar: "https://github.com/luisdasilvahenrique.png",
@@ -15,7 +15,7 @@ const profile = {
   },
   controllers: {
     index(req, res){
-    return res.render(views + "profile", { profile: profile.data })
+    return res.render(views + "profile", { profile: Profile.data })
     },
 
     update(){
@@ -53,7 +53,7 @@ const Job = {
             ...job,
             remaining,
             status,
-            budget: profile.data["value-hour"] = job["total-hours"],
+            budget: Profile.data["value-hour"] = job["total-hours"],
           };
         });
       
@@ -100,8 +100,6 @@ const Job = {
     }
   }
 
-//3:05
-
 
 //req, res
 routes.get("/", Job.controllers.index)
@@ -109,6 +107,6 @@ routes.get("/", Job.controllers.index)
 routes.get("/job", Job.controllers.create)
 routes.post("/job", Job.controllers.save)
 routes.get("/job/edit", (req, res) => res.render(views + "job-edit"))
-routes.get("/profile", profile.controllers.index)
+routes.get("/profile", Profile.controllers.index)
 
 module.exports = routes;
