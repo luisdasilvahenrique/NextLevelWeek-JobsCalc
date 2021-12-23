@@ -21,10 +21,30 @@ const Profile = {
 
       update(req, res){
         //req.body para pegar os dados
-        //quantas semanas tem no ano
-        //remover as semanas de férias do ano
+        const data = req.body
+
+        //quantas semanas tem no ano: 52
+        const weeksPerYear = 52
+
+        //remover as semanas de férias do ano, para pegar quantas semanas tem em 1 mês
+        const weeksPerMonth = (weeksPerYear - data["vacation-per-year"]) / 12
+
         //quantas horas por semana estou trabalhando
+        const weeksTotalHours = data["hours-per-day"] * data["days-per-week"]
+
         //total de horas trabalhadas no mes
+        const monthlyTotalHours = weeksTotalHours * weeksPerMonth
+
+        //qual será o valor da hora?
+        const valueHour = data["monthly-budget"] / monthlyTotalHours
+
+        Profile.data = {
+          ...Profile.data,
+          ...req.body,
+          "value-hour": valueHour
+        }
+
+        return res.redirect('/profile')
       }
     }
   }
@@ -64,7 +84,7 @@ const Job = {
       
         return res.render(views + "index", { jobs: updateJobs })
     },  
-    
+
     create(req, res){
       return res.render(views, "job")
     },
@@ -81,8 +101,20 @@ const Job = {
         created_at: Date.now() // atribuindo data de hoje
       })
       return res.redirect("/")
-        }
-    },  
+    },
+      
+
+    show(req, res){
+
+      const jobId = req.params.id
+
+      const job = Job.data.find(job => job.id === jobId)
+
+      return res.render(views + "job-edit", { job })
+    },
+
+  },
+    
 
     services: {
       remainingDays(job) {
@@ -107,12 +139,11 @@ const Job = {
 
 
 //req, res
-routes.get("/", Job.controllers.index)
-
-routes.get("/job", Job.controllers.create)
-routes.post("/job", Job.controllers.save)
-routes.get("/job/edit", (req, res) => res.render(views + "job-edit"))
-routes.get("/profile", Profile.controllers.index)
-routes.post("/profile", Profile.controllers.update)
+routes.get('/', Job.controllers.index)
+routes.get('/job', Job.controllers.create)
+routes.post('/job', Job.controllers.save)
+routes.get('/job/:id', Job.controllers.show)
+routes.get('/profile', Profile.controllers.index)
+routes.post('/profile', Profile.controllers.update)
 
 module.exports = routes;
