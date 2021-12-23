@@ -8,20 +8,22 @@ const Profile = {
     name: "Luis Henrique",
     avatar: "https://github.com/luisdasilvahenrique.png",
     "monthly-budget": 3000,
-    "day-per-week": 5,
+    "days-per-week": 5,
     "hours-per-day": 5,
-    "vacation-per-day": 4,
+    "vacation-per-year": 2,
     "value-hour": 75,
   },
+
   controllers: {
     index(req, res){
-    return res.render(views + "profile", { profile: Profile.data })
+      return res.render(views + "profile", { profile: Profile.data })
     },
 
     update(){
 
     }
   }
+
 };
 
 const Job = {
@@ -53,7 +55,7 @@ const Job = {
             ...job,
             remaining,
             status,
-            budget: Profile.data["value-hour"] = job["total-hours"],
+            budget: Profile.data["value-hour"] * job["total-hours"],
           };
         });
       
