@@ -19,12 +19,15 @@ const Profile = {
       return res.render(views + "profile", { profile: Profile.data })
     },
 
-    update(){
-
+      update(req, res){
+        //req.body para pegar os dados
+        //quantas semanas tem no ano
+        //remover as semanas de férias do ano
+        //quantas horas por semana estou trabalhando
+        //total de horas trabalhadas no mes
+      }
     }
   }
-
-};
 
 const Job = {
   data: [
@@ -60,8 +63,8 @@ const Job = {
         });
       
         return res.render(views + "index", { jobs: updateJobs })
-    },
-
+    },  
+    
     create(req, res){
       return res.render(views, "job")
     },
@@ -110,5 +113,6 @@ routes.get("/job", Job.controllers.create)
 routes.post("/job", Job.controllers.save)
 routes.get("/job/edit", (req, res) => res.render(views + "job-edit"))
 routes.get("/profile", Profile.controllers.index)
+routes.post("/profile", Profile.controllers.update)
 
 module.exports = routes;
