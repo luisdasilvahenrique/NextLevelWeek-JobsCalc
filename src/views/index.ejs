@@ -26,7 +26,7 @@
   </head>
   <body id="page-index">
 
-    <% include('parts/page-header', { title: 'Meu Perfil'}) %>
+    <!-- <%- include('parts/page-header', { title: 'Meu Perfil'}) %> -->
   
     <header class="page-header">
       <div class="container">
@@ -103,7 +103,7 @@
               <div class="amount column">
                 <span>Valor</span>
                 <!-- adicionar valores com virgulas nos (valor) -->
-                <p> R$  <%= job.budget.toFixed(2).replace('.', ',')%>  </p>
+                <p> R$  <%= job.budget.toFixed(2).replace('.', ',') %>  </p>
               </div>
               <div class="status badge column">
                 <%= job.status === 'done' ? 'Encerrado' : 'Em andamento' %> 
