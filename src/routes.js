@@ -90,7 +90,7 @@ const Job = {
     },
 
     save(req, res){
-      const lastId = Job.data[Job.data.length - 1]?.id || 1;
+      const lastId = Job.data[Job.data.length - 0]?.id || 1;
 
       Job.data.push({//aqui antes era jobs
         // estou mandando isto para o const jobs = []
@@ -100,7 +100,7 @@ const Job = {
         "total-hours": req.body["total-hours"],
         created_at: Date.now() // atribuindo data de hoje
       })
-      return res.redirect("/")
+      return res.redirect('/')
     },
       
 
@@ -148,7 +148,7 @@ const Job = {
     delete(req, res){
       const jobId = req.params.id
 
-      Job.data.filter(job => Number(job.id) !== Number(jobId))
+      Job.data = Job.data.filter(job => Number(job.id) !== Number(jobId))
 
       return res.redirect('/')
     }
