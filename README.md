@@ -23,7 +23,7 @@
 
 ## Start 
 - npm run dev
-
+- sempre verificar se o node e react estão instalados!
 ## 🚀 Tecnologias
 
 Esse projeto foi desenvolvido com as seguintes tecnologias:
